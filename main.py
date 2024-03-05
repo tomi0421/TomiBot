@@ -1,5 +1,7 @@
 import discord
 from discord.ext import commands
+#👇keep_aliveを追加 by M
+from keep_alive import keep_alive
 
 intents = discord.Intents.all()  
 bot = commands.Bot(command_prefix='t!', intents=intents)
@@ -20,4 +22,7 @@ async def member_info(ctx, member: discord.Member):
 
     await ctx.send(embed=embed)
 
-bot.run('DISCORDBOTTOKEN')
+#👇keep_aliveを使用 by M
+keep_alive()
+#👇envファイルでtokenを指定するように変更　by M
+bot.run(os.getenv('token'))
