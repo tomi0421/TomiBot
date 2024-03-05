@@ -20,4 +20,4 @@ async def member_info(ctx, member: discord.Member):
 
     await ctx.send(embed=embed)
 
-bot.run('BOTのTOKEN')
+bot.run('DISCORDBOTTOKEN')
