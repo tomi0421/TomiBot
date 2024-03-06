@@ -13,9 +13,13 @@ async def on_ready():
     await tree.sync()
 
 @tree.command(name="embed", description="embed command")
-async def embed_command(interaction: discord.Interaction,title:str,description:str):
+async def embed_command(interaction:discord.Interaction,title:str,description:str):
     embed = discord.Embed(title=title,description=description,color=0xD1FAFF)
     await interaction.response.send_message(embed=embed)
+
+@tree.command(name="userinfo", description="userinfo command")
+async def userinfo_command(interaction: discord.Interaction, user:discord.User)
+    embed = discord.Embed(title=user.name, description=user.tag)
 
 keep_alive()
 client.run(os.getenv('token'))
