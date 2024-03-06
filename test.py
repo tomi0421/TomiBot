@@ -18,8 +18,9 @@ async def embed_command(interaction:discord.Interaction,title:str,description:st
     await interaction.response.send_message(embed=embed)
 
 @tree.command(name="userinfo", description="userinfo command")
-async def userinfo_command(interaction: discord.Interaction, user:discord.User)
-    embed = discord.Embed(title=user.name, description=user.tag)
+async def userinfo_command(interaction: discord.Interaction, user:discord.Member)
+    embed.add_field(name='user name',value=user.name,inline=False)
+    embed.add_field(name='user id',value=user.id,inline=False)
 
 keep_alive()
 client.run(os.getenv('token'))
