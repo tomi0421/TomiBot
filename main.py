@@ -47,4 +47,4 @@ async def embed_command(interaction: discord.Interaction,title:str,description:s
 # keep_aliveを使用 by M
 keep_alive()
 # envファイルでtokenを指定するように変更　by M
-bot.run(os.getenv('token'))
+client.run(os.getenv('token'))
