@@ -33,6 +33,8 @@ async def on_message(message: discord.Message):
         await message.reply("おはようございます！今日もいい天気ですね（?）")
     elif message.content == 'こんにちは':
         await message.reply("こんにちは！")
+    elif message.content == 'こんばんは':
+        await message.reply("こんばんは！")
 
 #👇keep_aliveを使用 by M
 keep_alive()
