@@ -14,4 +14,4 @@ async def on_ready():
 async def panel_au(interaction: discord.Interaction):
     await interaction.respons.send("test")
 
-cliente.run(os.getenv('token'))
+client.run(os.getenv('token'))
