@@ -12,3 +12,5 @@ LOG.md,CHAT.mdを作成 - M
 プレフィックスをt!にした - とみー
 
 CHAT.mdを削除 - M
+
+test.pyを作成 - M
