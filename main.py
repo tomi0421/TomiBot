@@ -14,7 +14,7 @@ async def on_ready():
     print(f'{bot.user} has connected to Discord!')
 
 #👇この下にあるやつがt!memberで動くはず by とみー
-@bot.command(name='member')
+@tree.command(name="test", description="test command")
 async def member_info(ctx, member: discord.Member):
     embed = discord.Embed(title=f'Member Information for {member.name}', color=member.color)
 
@@ -24,6 +24,13 @@ async def member_info(ctx, member: discord.Member):
     embed.add_field(name='Joined Server', value=member.joined_at.strftime('%Y-%m-%d %H:%M:%S'), inline=False)
 
     await ctx.send(embed=embed)
+@bot.event
+async def on_message(message: discord.Message):
+    if message.author.bot:
+        return
+
+    if message.content == 'おはよう':
+        await message.reply("おはようございます！今日もいい天気ですね（?）")
 
 #👇keep_aliveを使用 by M
 keep_alive()
