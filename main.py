@@ -7,11 +7,10 @@ from keep_alive import keep_alive
 import os
 
 intents = discord.Intents.all()
-bot = discord.Bot(intents = intents)
-tree = discord.app_commands.CommandTree(bot)  
+client = discord.Client(intents = intents)
+tree = discord.app_commands.CommandTree(client)
 
-
-@bot.event
+@client.event
 async def on_ready():
     print(f'{bot.user} has connected to Discord!')
 
@@ -26,7 +25,7 @@ async def member_info(ctx, member: discord.Member):
     embed.add_field(name='Joined Server', value=member.joined_at.strftime('%Y-%m-%d %H:%M:%S'), inline=False)
 
     await ctx.send(embed=embed)
-@bot.event #あいさつのやつ
+@client.event #あいさつのやつ
 async def on_message(message: discord.Message):
     if message.author.bot:
         return
@@ -38,7 +37,7 @@ async def on_message(message: discord.Message):
     elif message.content == 'こんばんは':
         await message.reply("こんばんは！")
 
-    await bot.process_commands(message)
+    await client.process_commands(message)
 @tree.command(name="embed", description="埋め込みメッセージを送信します")
 async def embed_command(interaction: discord.Interaction,title:str,description:str):
     embed = discord.Embed(title=title,description=description,color=0xD1FAFF)
