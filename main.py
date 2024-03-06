@@ -10,7 +10,7 @@ bot = commands.Bot(command_prefix='t!', intents=intents)
 async def on_ready():
     print(f'{bot.user} has connected to Discord!')
 
-#👇この下にあるやつがt!memberで動くはず
+#👇この下にあるやつがt!memberで動くはず by とみー
 @bot.command(name='member')
 async def member_info(ctx, member: discord.Member):
     embed = discord.Embed(title=f'Member Information for {member.name}', color=member.color)
