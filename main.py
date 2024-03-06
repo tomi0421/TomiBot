@@ -4,8 +4,10 @@ from discord.ext import commands
 #👇keep_aliveを追加 by M
 from keep_alive import keep_alive
 
-intents = discord.Intents.all()  
-bot = commands.Bot(command_prefix='t!', intents=intents)
+intents = discord.Intents.all()
+bot = discord.Bot(intents = intents)
+tree = discord.app_commands.CommandTree(bot)  
+
 
 @bot.event
 async def on_ready():
