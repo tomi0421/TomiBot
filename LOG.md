@@ -16,3 +16,5 @@ CHAT.mdを削除 - M
 test.pyを作成 - M
 
 requirements.txtを作成 - M
+
+BOTのコマンドをスラッシュコマンドに変えた
