@@ -12,7 +12,7 @@ async def on_ready():
     await tree.sync()
 
 @tree.command(name="test", description="test command")
-async def panel_au(interaction: discord.Interaction):
-    await interaction.respons.send("test")
+async def test_command(interaction: discord.Interaction):
+    await interaction.response.send("test")
 
 client.run(os.getenv('token'))
