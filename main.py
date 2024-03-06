@@ -39,7 +39,7 @@ async def on_message(message: discord.Message):
         await message.reply("こんばんは！")
 
     await bot.process_commands(message)
-@tree.command(name="embed", description="embed command")
+@tree.command(name="embed", description="埋め込みメッセージを送信します")
 async def embed_command(interaction: discord.Interaction,title:str,description:str):
     embed = discord.Embed(title=title,description=description,color=0xD1FAFF)
     await interaction.response.send_message(embed=embed)
