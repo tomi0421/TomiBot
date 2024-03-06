@@ -40,6 +40,12 @@ async def on_message(message: discord.Message):
 
     await bot.process_commands(message)
 
+@tree.command(name="embed", description="embed command")
+async def embed_command(interaction: discord.Interaction,title:str,description:str):
+    embed = discord.Embed(title=title,description=description,color=0xD1FAFF)
+    await interaction.response.send_message(embed=embed)
+
+
 # keep_aliveを使用 by M
 keep_alive()
 # envファイルでtokenを指定するように変更　by M
