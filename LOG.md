@@ -14,3 +14,5 @@ LOG.md,CHAT.mdを作成 - M
 CHAT.mdを削除 - M
 
 test.pyを作成 - M
+
+requirements.txtを作成 - M
