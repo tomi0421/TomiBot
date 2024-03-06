@@ -1,3 +1,4 @@
+#プレフィックスはt!でいきます。 byとみー
 import discord
 from discord.ext import commands
 #👇keep_aliveを追加 by M
