@@ -16,7 +16,7 @@ async def on_ready():
     print(f'{bot.user} has connected to Discord!')
 
 # この下にあるやつがt!memberで動くはず by とみー
-@tree.command(name="test", description="test command")
+@tree.command(name="user", description="ユーザーの詳細を表示します")
 async def member_info(ctx, member: discord.Member):
     embed = discord.Embed(title=f'Member Information for {member.name}', color=member.color)
 
