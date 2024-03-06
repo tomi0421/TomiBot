@@ -24,13 +24,15 @@ async def member_info(ctx, member: discord.Member):
     embed.add_field(name='Joined Server', value=member.joined_at.strftime('%Y-%m-%d %H:%M:%S'), inline=False)
 
     await ctx.send(embed=embed)
-@bot.event
+@bot.event #挨拶適当に作ったbyとみー
 async def on_message(message: discord.Message):
     if message.author.bot:
         return
 
     if message.content == 'おはよう':
         await message.reply("おはようございます！今日もいい天気ですね（?）")
+    elif message.content == 'こんにちは':
+        await message.reply("こんにちは！")
 
 #👇keep_aliveを使用 by M
 keep_alive()
