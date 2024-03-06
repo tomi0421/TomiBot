@@ -13,6 +13,6 @@ async def on_ready():
 
 @tree.command(name="test", description="test command")
 async def test_command(interaction: discord.Interaction):
-    await interaction.response.send("test")
+    await interaction.response.send_message("test")
 
 client.run(os.getenv('token'))
