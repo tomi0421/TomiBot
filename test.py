@@ -7,7 +7,7 @@ tree = discord.app_commands.CommandTree(client)
 
 @client.event
 async def on_ready():
-    await client.change_presence(activity=discord. Activity(type=discord.ActivityType.competing, name=f'{len(client.guilds)}'))
+    await client.change_presence(activity=discord. Activity(type=discord.ActivityType.competing, name=f'{len(client.guilds)}servers'))
     print(f'{client.user} is online!')
     await tree.sync()
 
