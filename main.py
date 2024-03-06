@@ -39,10 +39,6 @@ async def on_message(message: discord.Message):
         await message.reply("こんばんは！")
 
     await bot.process_commands(message)
-@bot.event
-discord.on_member_join(member)
-    await send_message('新規さんいらっしゃい！')
-
 @tree.command(name="embed", description="embed command")
 async def embed_command(interaction: discord.Interaction,title:str,description:str):
     embed = discord.Embed(title=title,description=description,color=0xD1FAFF)
