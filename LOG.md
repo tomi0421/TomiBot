@@ -8,3 +8,5 @@
 keep_aliveファイルを作成 - M
 
 LOG.md,CHAT.mdを作成 - M
+
+プレフィックスをt!にした - とみー
