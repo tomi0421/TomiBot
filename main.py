@@ -1,9 +1,9 @@
-# プレフィックスはt!でいきます。 byとみー
+# プレフィックスは/でいきます。 byとみー
 import discord
 from discord.ext import commands
 # keep_aliveを追加 by M
 from keep_alive import keep_alive
-# osを追加
+# osを追加by M
 import os
 
 intents = discord.Intents.all()
@@ -39,6 +39,9 @@ async def on_message(message: discord.Message):
         await message.reply("こんばんは！")
 
     await bot.process_commands(message)
+@bot.event
+discord.on_member_join(member)
+    await send_message('新規さんいらっしゃい！')
 
 @tree.command(name="embed", description="embed command")
 async def embed_command(interaction: discord.Interaction,title:str,description:str):
