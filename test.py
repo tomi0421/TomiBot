@@ -11,8 +11,9 @@ async def on_ready():
     print(f'{client.user} is online!')
     await tree.sync()
 
-@tree.command(name="test", description="test command")
-async def test_command(interaction: discord.Interaction):
-    await interaction.response.send_message("test")
+@tree.command(name="embed", description="embed command")
+async def test_command(interaction: discord.Interaction,title:src,description:src):
+    embed = discord.Embed(title=title,description=description)
+    await interaction.response.send_message(embed=embed)
 
 client.run(os.getenv('token'))
