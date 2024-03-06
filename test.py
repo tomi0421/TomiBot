@@ -12,7 +12,7 @@ async def on_ready():
     await tree.sync()
 
 @tree.command(name="embed", description="embed command")
-async def test_command(interaction: discord.Interaction,title:src,description:src):
+async def test_command(interaction: discord.Interaction,title:str,description:str):
     embed = discord.Embed(title=title,description=description)
     await interaction.response.send_message(embed=embed)
 
