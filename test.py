@@ -1,5 +1,6 @@
 import discord
 import os
+from keep_alive import keep_alive
 
 intents = discord.Intents.all()
 client = discord.Client(intents = intents)
@@ -16,4 +17,5 @@ async def test_command(interaction: discord.Interaction,title:str,description:st
     embed = discord.Embed(title=title,description=description)
     await interaction.response.send_message(embed=embed)
 
+keep_alive()
 client.run(os.getenv('token'))
