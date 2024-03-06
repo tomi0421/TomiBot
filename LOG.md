@@ -18,3 +18,5 @@ test.pyを作成 - M
 requirements.txtを作成 - M
 
 BOTのコマンドをスラッシュコマンドに変えた - とみー
+
+requirements.txtにflaskを追加 -　M
