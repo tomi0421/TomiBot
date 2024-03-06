@@ -1,8 +1,10 @@
-#プレフィックスはt!でいきます。 byとみー
+# プレフィックスはt!でいきます。 byとみー
 import discord
 from discord.ext import commands
-#👇keep_aliveを追加 by M
+# keep_aliveを追加 by M
 from keep_alive import keep_alive
+# osを追加
+import os
 
 intents = discord.Intents.all()
 bot = discord.Bot(intents = intents)
@@ -13,7 +15,7 @@ tree = discord.app_commands.CommandTree(bot)
 async def on_ready():
     print(f'{bot.user} has connected to Discord!')
 
-#👇この下にあるやつがt!memberで動くはず by とみー
+# この下にあるやつがt!memberで動くはず by とみー
 @tree.command(name="test", description="test command")
 async def member_info(ctx, member: discord.Member):
     embed = discord.Embed(title=f'Member Information for {member.name}', color=member.color)
@@ -24,7 +26,7 @@ async def member_info(ctx, member: discord.Member):
     embed.add_field(name='Joined Server', value=member.joined_at.strftime('%Y-%m-%d %H:%M:%S'), inline=False)
 
     await ctx.send(embed=embed)
-@bot.event #挨拶適当に作ったbyとみー
+@bot.event # 挨拶適当に作ったbyとみー
 async def on_message(message: discord.Message):
     if message.author.bot:
         return
@@ -36,7 +38,7 @@ async def on_message(message: discord.Message):
     elif message.content == 'こんばんは':
         await message.reply("こんばんは！")
 
-#👇keep_aliveを使用 by M
+# keep_aliveを使用 by M
 keep_alive()
-#👇envファイルでtokenを指定するように変更　by M
+# envファイルでtokenを指定するように変更　by M
 bot.run(os.getenv('token'))
