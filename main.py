@@ -15,16 +15,32 @@ async def on_ready():
     print(f'{bot.user} has connected to Discord!')
 
 # この下にあるやつが/userinfoで動くはず by とみー
-@tree.command(name="userinfo", description="ユーザーの詳細を表示します")
-async def member_info(ctx, member: discord.Member):
-    embed = discord.Embed(title=f'Member Information for {member.name}', color=member.color)
+@tree.command(name="userinfo", description="指定したユーザーの情報を表示する")
+async def user_info(interaction: discord.Interaction,user:discord.User):
+  try:
+    embed = discord.Embed(title=user.display_name)
+    embed.set_thumbnail(
+        url=user.avatar.url if user.avatar else discord.Embed.Empty)
 
-    embed.set_thumbnail(url=member.avatar_url)
-    embed.add_field(name='ID', value=member.id, inline=False)
-    embed.add_field(name='Top Role', value=member.top_role.name, inline=False)
-    embed.add_field(name='Joined Server', value=member.joined_at.strftime('%Y-%m-%d %H:%M:%S'), inline=False)
+    embed.add_field(name="user name",value=user.name,inline=False)
+    embed.add_field(name="account create",value=user.created_at.strftime("%Y-%m-%d %H:%M:%S"),inline=False)
 
-    await ctx.send(embed=embed)
+    guild = interaction.guild
+    member = guild.get_member(user.id)
+    if member:
+      roles = [role.mention for role in member.roles[1:]]
+      if roles:
+        embed.add_field(name="role",value=" ".join(roles),inline=False)
+      else:
+        embed.add_field(name="role",value="none",inline=False)
+    else:
+      embed.add_field(name="role",value="none",inline=False)
+
+    await interaction.response.send_message(embed=embed)
+  except Exception as e:
+    print(e)
+    await interaction.response.send_message("エラーが発生しました",ephemeral=True)
+    
 @client.event #あいさつのやつ
 async def on_message(message: discord.Message):
     if message.author.bot:
