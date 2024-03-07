@@ -22,8 +22,8 @@ async def user_info(interaction: discord.Interaction,user:discord.User):
     embed.set_thumbnail(
         url=user.avatar.url if user.avatar else discord.Embed.Empty)
 
-    embed.add_field(name="user name",value=user.name,inline=False)
-    embed.add_field(name="account create",value=user.created_at.strftime("%Y-%m-%d %H:%M:%S"),inline=False)
+    embed.add_field(name="ユーザーの名前",value=user.name,inline=False)
+    embed.add_field(name="アカウント作成日",value=user.created_at.strftime("%Y-%m-%d %H:%M:%S"),inline=False)
 
     guild = interaction.guild
     member = guild.get_member(user.id)
