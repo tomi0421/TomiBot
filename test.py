@@ -1,6 +1,7 @@
 import discord
 import os
 from keep_alive import keep_alive
+import random
 
 intents = discord.Intents.all()
 client = discord.Client(intents = intents)
@@ -15,7 +16,7 @@ async def on_ready():
 @tree.command(name="embed", description="embed command")
 async def embed_command(interaction:discord.Interaction,title:str,description:str):
   try:   
-    embed = discord.Embed(title=title,description=description,color=0xD1FAFF)
+    embed = discord.Embed(title=title,description=description,color=discord.Color(random.randint(0,0xFFFFFF)))
     await interaction.response.send_message(embed=embed)
   except Exception as e:
     print(e)
@@ -24,7 +25,7 @@ async def embed_command(interaction:discord.Interaction,title:str,description:st
 @tree.command(name="userinfo", description="指定したユーザーの情報を表示する")
 async def user_info(interaction: discord.Interaction,user:discord.User):
   try:
-    embed = discord.Embed(title=user.display_name)
+    embed = discord.Embed(title=user.display_name,color=discord.Color(random.randint(0,0xFFFFFF)))
     embed.set_thumbnail(
         url=user.avatar.url if user.avatar else discord.Embed.Empty)
 
