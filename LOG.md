@@ -22,3 +22,5 @@ BOTのコマンドをスラッシュコマンドに変えた - とみー
 requirements.txtにflaskを追加 -　M
 
 test.pyのコマンドをembedに変更 - M
+
+test.pyを更新 - M
