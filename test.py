@@ -29,6 +29,7 @@ async def user_info(interaction: discord.Interaction,user:discord.User):
         url=user.avatar.url if user.avatar else discord.Embed.Empty)
 
     embed.add_field(name="user name",value=user.name,inline=False)
+    embed.add_field(name="user id",value=user.id,inline=False)
     embed.add_field(name="account create",value=user.created_at.strftime("%Y-%m-%d %H:%M:%S"),inline=False)
 
     guild = interaction.guild
