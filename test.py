@@ -2,6 +2,13 @@ import discord
 import os
 from keep_alive import keep_alive
 import random
+from discord import Embed, channel, Interaction, integrations
+from discord.ext import commands
+from discord import app_commands
+from discord.utils import get
+from collections import defaultdict
+from datetime import datetime, timedelta
+from discord.ui import Select, View
 
 intents = discord.Intents.all()
 client = discord.Client(intents = intents)
@@ -48,6 +55,97 @@ async def user_info(interaction: discord.Interaction,user:discord.User):
   except Exception as e:
     print(e)
     await interaction.response.send_message("エラーが発生しました",ephemeral=True)
+
+@client.event
+async def on_interaction(inter: discord.Interaction):
+    try:
+        if inter.data['component_type'] == 2:
+            await on_button_click(inter)
+    except KeyError:
+        pass
+
+async def on_button_click(interaction: discord.Interaction):
+    custom_id = interaction.data["custom_id"]
+    if custom_id.startswith("ticket_"):
+        parts = custom_id.split('_')
+        category_id, role_id = parts[1], parts[2]
+        if category_id != 'None':
+            category_id = int(category_id)
+            category = client.get_channel(category_id)
+        else:
+            category = interaction.guild.categories[0]
+
+        ticket_nameA = f'ticket-{interaction.user.name}-{interaction.user.discriminator}'
+        ticket_name = remove_dots(ticket_nameA)
+        existing_channel = discord.utils.get(category.channels, name=ticket_name)
+
+        if existing_channel:
+            await interaction.response.send_message('既にチケットが存在します', ephemeral=True)
+            return
+        else:
+            overwrites = {
+                interaction.guild.default_role: discord.PermissionOverwrite(read_messages=False),
+                interaction.guild.me: discord.PermissionOverwrite(read_messages=True),
+                interaction.user: discord.PermissionOverwrite(read_messages=True)
+            }
+            ticket_channel = await category.create_text_channel(name=ticket_name, overwrites=overwrites)
+            await interaction.response.send_message(f'チャンネルが作成されました: {ticket_channel.mention}', ephemeral=True)
+            embed = discord.Embed(title='チケット', description=f'担当者が来るまでお待ちください', color=discord.Colour.red())
+            embed.set_footer(text="ticket")
+            view = discord.ui.View(timeout=None)
+            button = discord.ui.Button(label="閉じる", style=discord.ButtonStyle.primary, custom_id="tk_delete")
+            view.add_item(button)
+            if not role_id.startswith("userid"):
+              role_id = int(role_id)
+              role = interaction.guild.get_role(role_id)
+              await ticket_channel.send(f'{role.mention}', embed=embed, view=view)
+            else:
+              parts = role_id.split('.')
+              user_id = parts[1]
+              await ticket_channel.send(f'<@{user_id}>', embed=embed, view=view)
+    
+    if custom_id == ("tk_delete"):
+      embed = discord.Embed(title="チケットを閉じる", description="チケットを閉じますか")
+      view = discord.ui.View(timeout=None)
+      button1 = discord.ui.Button(label='はい', style=discord.ButtonStyle.secondary, custom_id='channel_delete_true')
+      button2 = discord.ui.Button(label='いいえ', style=discord.ButtonStyle.secondary, custom_id='channel_delete_false')
+      view.add_item(button1)
+      view.add_item(button2)
+      await interaction.response.send_message(embed=embed, view=view, ephemeral=True)
+
+    if custom_id.startswith("channel_delete_"):
+      if custom_id == "channel_delete_true":
+        channel = interaction.channel
+        await channel.delete()
+      if custom_id == "chanel_delete_false":
+        await interaction.response.send_message("キャンセルしました", ephemeral=True)
+
+@tree.command(name="ticket", description="チケットパネルを設置します")
+@tree.describe(
+    title='タイトル',
+    description='説明',
+    label='ラベル',
+    category='カテゴリ',
+    role='ロール'
+)
+@tree.checks.has_permissions(manage_channels=True)
+async def create_ticket(interaction: discord.Interaction,
+                        title: str = 'チケットパネル',
+                        description: str = 'ボタンを押してチケットを作成',
+                        label: str = '問い合わせ',
+                        category: discord.CategoryChannel = None,
+                        role: discord.Role = None):
+    await interaction.response.send_message("チケットパネルを作成しました",ephemeral=True)
+    embed = discord.Embed(title=title, color=discord.Colour.green())
+    embed.add_field(name='', value=description)
+    embed.set_footer(text="ticket")
+    view = discord.ui.View(timeout=None)
+    button_label = label
+    user = interaction.user.id
+    custom_id = f"ticket_{category.id if category else 'None'}_{role.id if role else f'userid.{user}'}"
+    button = discord.ui.Button(label=button_label, style=discord.ButtonStyle.secondary, custom_id=custom_id)
+    view.add_item(button)
+    await interaction.channel.send(embed=embed, view=view)
 
 keep_alive()
 client.run(os.getenv('token'))
