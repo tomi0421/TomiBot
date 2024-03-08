@@ -14,11 +14,15 @@ intents = discord.Intents.all()
 client = discord.Client(intents = intents)
 tree = discord.app_commands.CommandTree(client)
 
+def remove_dots(variable):
+  return variable.replace(".", "")
+
 @client.event
 async def on_ready():
     await client.change_presence(activity=discord. Activity(type=discord.ActivityType.competing, name=f'{len(client.guilds)}servers'))
     print(f'{client.user} is online!')
     await tree.sync()
+    synced = await client.tree.sync()
 
 @tree.command(name="embed", description="embed command")
 async def embed_command(interaction:discord.Interaction,title:str,description:str):
@@ -103,7 +107,7 @@ async def on_button_click(interaction: discord.Interaction):
               parts = role_id.split('.')
               user_id = parts[1]
               await ticket_channel.send(f'<@{user_id}>', embed=embed, view=view)
-    
+
     if custom_id == ("tk_delete"):
       embed = discord.Embed(title="チケットを閉じる", description="チケットを閉じますか")
       view = discord.ui.View(timeout=None)
@@ -121,14 +125,14 @@ async def on_button_click(interaction: discord.Interaction):
         await interaction.response.send_message("キャンセルしました", ephemeral=True)
 
 @tree.command(name="ticket", description="チケットパネルを設置します")
-@tree.describe(
+@app_commands.describe(
     title='タイトル',
     description='説明',
     label='ラベル',
     category='カテゴリ',
     role='ロール'
 )
-@tree.checks.has_permissions(manage_channels=True)
+@app_commands.checks.has_permissions(manage_channels=True)
 async def create_ticket(interaction: discord.Interaction,
                         title: str = 'チケットパネル',
                         description: str = 'ボタンを押してチケットを作成',
