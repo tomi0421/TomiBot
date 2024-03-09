@@ -36,7 +36,7 @@ async def server_stats(interaction):
 
       await interaction.response.send_message(embed=embed)
 
-@client.event #あいさつのやつ
+@client.event
 async def on_message(message: discord.Message):
     if message.author.bot:
         return
@@ -47,6 +47,7 @@ async def on_message(message: discord.Message):
         await message.reply("こんにちは！")
     elif message.content == 'こんばんは':
         await message.reply("こんばんは！")
+        
 @tree.command(name="embed", description="埋め込みメッセージを送信します")
 async def embed_command(interaction: discord.Interaction,title:str,description:str):
     embed = discord.Embed(title=title,description=description,color=0xD1FAFF)
@@ -169,8 +170,6 @@ async def create_ticket(interaction: discord.Interaction,
     button = discord.ui.Button(label=button_label, style=discord.ButtonStyle.secondary, custom_id=custom_id)
     view.add_item(button)
     await interaction.channel.send(embed=embed, view=view)
-  
-# keep_aliveを使用 by M
+
 keep_alive()
-# envファイルでtokenを指定するように変更　by M
 client.run(os.getenv('token'))
