@@ -1,0 +1,43 @@
+body{
+    background-color: black;
+    margin: auto;
+    text-align: center;
+    color: white;
+}
+.top{
+    margin-top: auto;
+    border-style: double;
+    width: 100%; 
+    height: 100px;
+    color: rgb(48, 48, 48);
+    background-color: rgb(212, 244, 255);
+    z-index: 2;
+    position: fixed;
+}
+.waku{
+    border-style: dotted;
+    border-radius: 20px;
+    position: absolute;
+    top: -400;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto; 
+    width: 500px; 
+    height: 600px;
+}
+.sitanoyatu{
+    border-style: double;
+    text-align: center;
+    background-color: rgb(51, 51, 51);
+    color: white;
+    padding: 10px;
+    width: 100%;
+    bottom: 1px;
+    scroll-margin-top: 10px;
+    position: fixed;
+    z-index: 2;
+}
+.sitanoyatu a{
+    color: rgb(195, 246, 255);
+}
