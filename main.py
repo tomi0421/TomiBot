@@ -171,7 +171,7 @@ async def create_ticket(interaction: discord.Interaction,
     view.add_item(button)
     await interaction.channel.send(embed=embed, view=view)
 
-banned_words = ['死ね', 'バカ', '馬鹿','アホ','ゴミカス','殺す''殺し']
+banned_words = ['死ね', 'バカ', '馬鹿','アホ','ゴミカス','殺す','殺し','消え']
 
 @client.event
 async def on_message(message):
