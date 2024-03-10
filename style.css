@@ -41,3 +41,44 @@ body{
 .sitanoyatu a{
     color: rgb(195, 246, 255);
 }
+.round1{
+    border-style: inset;
+    border-color: aqua;
+    display: inline-block;
+    border-radius: 10px;
+    border-width: 100%;
+    background-image: url('image.png');
+    width: 80px;
+    height: 70px;
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    text-decoration: none;
+}
+.round2{
+    border-style: inset;
+    border-color: aqua;
+    display: inline-block;
+    border-radius: 10px;
+    border-width: 100%;
+    background-image: url('image2.png');
+    width: 80px;
+    height: 70px;
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    text-decoration: none;
+}.round3{
+    border-style: inset;
+    border-color: aqua;
+    display: inline-block;
+    border-radius: 10px;
+    border-width: 100%;
+    background-image: url('image3.png');
+    width: 80px;
+    height: 70px;
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    text-decoration: none;
+}
