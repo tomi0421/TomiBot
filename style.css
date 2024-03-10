@@ -68,7 +68,8 @@ body{
     background-position: center; 
     background-repeat: no-repeat; 
     text-decoration: none;
-}.round3{
+}
+.round3{
     border-style: inset;
     border-color: aqua;
     display: inline-block;
@@ -81,4 +82,35 @@ body{
     background-position: center; 
     background-repeat: no-repeat; 
     text-decoration: none;
+}
+.round4{
+    border-style: inset;
+    border-color: aqua;
+    display: inline-block;
+    border-radius: 10px;
+    border-width: 100%;
+    background-image: url('image4.png');
+    width: 80px;
+    height: 70px;
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    text-decoration: none;
+}
+.round5{
+    border-style: inset;
+    border-color: aqua;
+    display: inline-block;
+    border-radius: 10px;
+    border-width: 100%;
+    background-image: url('image5.png');
+    width: 80px;
+    height: 70px;
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    text-decoration: none;
+}
+h1.iroari{
+    color: rebeccapurple;
 }
