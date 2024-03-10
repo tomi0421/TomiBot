@@ -171,5 +171,20 @@ async def create_ticket(interaction: discord.Interaction,
     view.add_item(button)
     await interaction.channel.send(embed=embed, view=view)
 
+banned_words = ['死ね', 'バカ', '馬鹿','アホ','ゴミカス','殺す''殺し']
+
+@client.event
+async def on_message(message):
+    if message.author == client.user:
+        return
+
+    message_content = message.content.lower()
+
+    for word in banned_words:
+        if word in message_content:
+            await message.delete()
+            await message.channel.send('この単語は不適切である可能性が高いため利用できません。異議申し立ては鯖主のDMに。')
+            return
+
 keep_alive()
 client.run(os.getenv('token'))
